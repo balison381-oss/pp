@@ -7,41 +7,68 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0DT2SZ2WT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-M0DT2SZ2WT');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0DT2SZ2WT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M0DT2SZ2WT');
+  </script>
 </head>
 <body>
   <div class="container">
 
     <!-- Player Spotify -->
     <div class="spotify-player">
-   <!-- Player Spotify -->
-<div class="spotify-player">
-  <!-- Player Spotify -->
-<div class="spotify-player">
-  <iframe 
-    style="border-radius:12px" 
-    src="https://open.spotify.com/embed/track/736PP5LTtREkDgktNmX3Gu?utm_source=generator&theme=0" 
-    width="280" 
-    height="80" 
-    frameborder="0" 
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-    loading="lazy">
-  </iframe>
-</div>
-
-</div>
-
+      <iframe 
+        style="border-radius:12px" 
+        src="https://open.spotify.com/embed/track/736PP5LTtREkDgktNmX3Gu?utm_source=generator&theme=0" 
+        width="280" 
+        height="80" 
+        frameborder="0" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+      </iframe>
     </div>
 
-    <!-- Botão para mostrar/ocultar GIF -->
+    <!-- Botão inicial -->
     <div class="show-gif">
       <button id="show-btn">Aperta aqui</button>
+    </div>
+
+    <!-- Caixa de diálogo interativa (inicialmente escondida) -->
+    <div class="quiz-sequence" id="quiz-sequence" style="display:none; margin-top:20px;">
+
+      <div class="message" id="msg-1">
+        <p>Já deu play na música?</p>
+        <button class="seq-btn" data-next="msg-2">Sim</button>
+        <button class="seq-btn" onclick="alert('Aperta o play e dps aperta sim 😜')">Não</button>
+      </div>
+
+      <div class="message" id="msg-2" style="display:none;">
+        <p>Agora aperta nesse botão</p>
+        <button class="seq-btn" data-next="msg-3">Aperta!</button>
+      </div>
+
+      <div class="message" id="msg-3" style="display:none;">
+        <p>TROLEEII!!</p>
+        <button class="seq-btn" data-next="msg-4">Próximo</button>
+      </div>
+
+      <div class="message" id="msg-4" style="display:none;">
+        <p>Brincadeira, aperta nesse botão agora</p>
+        <button class="seq-btn" data-next="msg-5">Aperta!</button>
+      </div>
+
+      <div class="message" id="msg-5" style="display:none;">
+        <p>Trolei de novo kkkk</p>
+        <button class="seq-btn" data-next="msg-6">Próximo</button>
+      </div>
+
+      <div class="message" id="msg-6" style="display:none;">
+        <p>Parei, parei, agora vai</p>
+        <button class="seq-btn" id="final-btn">Clica aqui</button>
+      </div>
     </div>
 
     <!-- GIF animado (inicialmente escondido) -->
@@ -51,25 +78,43 @@
 
   </div>
 
+  <!-- Script de interação -->
   <script>
     const showBtn = document.getElementById('show-btn');
+    const quizSequence = document.getElementById('quiz-sequence');
     const gifContainer = document.getElementById('gif-container');
 
+    // Inicia a sequência ao clicar em "Aperta aqui"
     showBtn.addEventListener('click', () => {
-      if (gifContainer.style.display === "none") {
-        // Mostra o GIF
-        gifContainer.style.display = "flex";
+      quizSequence.style.display = "block";
+      showBtn.style.display = "none"; // esconde botão inicial
+    });
 
-        // Reinicia animação
-        const gif = document.querySelector(".animated-gif");
-        gif.style.animation = "none";
-        void gif.offsetWidth; // força reinício
-        gif.style.animation = "fadeInUp 0.5s forwards";
-      } else {
-        // Esconde o GIF
-        gifContainer.style.display = "none";
-      }
+    // Navegação dos botões da sequência
+    const seqButtons = document.querySelectorAll(".seq-btn");
+    seqButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const currentMsg = btn.parentElement;
+        const nextId = btn.getAttribute("data-next");
+
+        if(nextId){
+          currentMsg.style.display = "none";
+          document.getElementById(nextId).style.display = "block";
+        }
+      });
+    });
+
+    // Último botão mostra o GIF
+    document.getElementById("final-btn").addEventListener("click", () => {
+      quizSequence.style.display = "none";
+      gifContainer.style.display = "flex";
+
+      const gif = document.querySelector(".animated-gif");
+      gif.style.animation = "none";
+      void gif.offsetWidth;
+      gif.style.animation = "fadeInUp 0.5s forwards";
     });
   </script>
+
 </body>
 </html>

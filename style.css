@@ -1,7 +1,7 @@
 /* ===== Body / Background ===== */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,29 +36,39 @@ body::before {
   border-radius: 12px;
   width: 280px;
   height: 80px;
+  margin-bottom: 20px;
 }
 
-/* ===== Botão ===== */
-.show-gif {
-  margin-top: 20px;
-}
-
-#show-btn {
-  background-color: #808080; /* cinza */
-  color: #fff;                /* texto branco */
-  border: none;
-  border-radius: 12px;
+/* ===== Botões ===== */
+.show-gif button,
+.seq-btn {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 8px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  margin: 5px;
+  transition: all 0.2s ease;
 }
 
-#show-btn:hover {
-  transform: scale(1.05);
-  background-color: #a0a0a0; /* cinza mais claro no hover */
+.show-gif button:hover,
+.seq-btn:hover {
+  background-color: #000;
+  color: #fff;
 }
 
+/* ===== Caixa de diálogo ===== */
+.quiz-sequence {
+  background-color: rgba(255,255,255,0.9);
+  color: #000;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
 
 /* ===== GIF ===== */
 .gif-container {
@@ -69,14 +79,13 @@ body::before {
   text-align: center;
 }
 
-/* GIF com animação suave */
 .animated-gif {
   max-width: 180px;
   height: auto;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1s forwards;
-  animation-delay: 0.1s; /* inicia logo após aparecer */
+  animation-delay: 0.1s;
 }
 
 @keyframes fadeInUp {
