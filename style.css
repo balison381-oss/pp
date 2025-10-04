@@ -1,0 +1,87 @@
+/* ===== Body / Background ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background-image: url('fundo.jpg');
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat; 
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+
+/* ===== Container ===== */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+/* ===== Player Spotify ===== */
+.spotify-player iframe {
+  border-radius: 12px;
+  width: 280px;
+  height: 80px;
+}
+
+/* ===== Botão ===== */
+.show-gif {
+  margin-top: 20px;
+}
+
+#show-btn {
+  background-color: #808080; /* cinza */
+  color: #fff;                /* texto branco */
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+#show-btn:hover {
+  transform: scale(1.05);
+  background-color: #a0a0a0; /* cinza mais claro no hover */
+}
+
+
+/* ===== GIF ===== */
+.gif-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* GIF com animação suave */
+.animated-gif {
+  max-width: 180px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.1s; /* inicia logo após aparecer */
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

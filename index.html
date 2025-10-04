@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Site Musical</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Player Spotify -->
+    <div class="spotify-player">
+      <iframe
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/1Q7EgiMOuwDcB0PJC6AzON"
+        width="280"
+        height="80"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <!-- Botão para mostrar/ocultar GIF -->
+    <div class="show-gif">
+      <button id="show-btn">Aperta aqui</button>
+    </div>
+
+    <!-- GIF animado (inicialmente escondido) -->
+    <div class="gif-container" id="gif-container" style="display:none;">
+      <img src="meu-gif.gif" alt="GIF Animado" class="animated-gif">
+    </div>
+
+  </div>
+
+  <script>
+    const showBtn = document.getElementById('show-btn');
+    const gifContainer = document.getElementById('gif-container');
+
+    showBtn.addEventListener('click', () => {
+      if (gifContainer.style.display === "none") {
+        // Mostra o GIF
+        gifContainer.style.display = "flex";
+
+        // Reinicia animação
+        const gif = document.querySelector(".animated-gif");
+        gif.style.animation = "none";
+        void gif.offsetWidth; // força reinício
+        gif.style.animation = "fadeInUp 0.5s forwards";
+      } else {
+        // Esconde o GIF
+        gifContainer.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
